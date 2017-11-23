@@ -42,7 +42,7 @@ public enum ConsoleIO {
 
     public void pressEnterToContinue() {
         try {
-            System.out.println("Press Enter key to exit...");
+            System.out.print("Press Enter key to exit...");
             System.in.read();
         } catch (IOException ignored) {
         }

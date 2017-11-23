@@ -53,4 +53,36 @@ public class FileInfo implements Serializable {
     public String toString() {
         return name + (isDirectory() ? "/" : "");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        FileInfo fileInfo = (FileInfo) o;
+
+        if (size != fileInfo.size) {
+            return false;
+        }
+        if (directory != fileInfo.directory) {
+            return false;
+        }
+        if (!name.equals(fileInfo.name)) {
+            return false;
+        }
+        return md5 != null ? md5.equals(fileInfo.md5) : fileInfo.md5 == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + (md5 != null ? md5.hashCode() : 0);
+        result = 31 * result + (int) (size ^ (size >>> 32));
+        result = 31 * result + (directory ? 1 : 0);
+        return result;
+    }
 }

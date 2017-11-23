@@ -32,7 +32,7 @@ public class Scanner {
         if (Files.exists(rootPath)) {
             if (rootPath.getFileName().toString().endsWith(".dat")) {
                 TrieSupport ts = TrieSupport.loadFrom(rootPath);
-                ts.print();
+                TrieUtils.print(ts.getTrie());
                 return null;
             }
             TrieSupport trieSupport = new TrieSupport(rootPath);
